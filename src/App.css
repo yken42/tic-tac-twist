@@ -1,0 +1,141 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #1A2A33;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+h1{
+  margin: 4rem auto;
+  text-align: center;
+  
+  letter-spacing: 0.5rem;
+  width: 100%;
+}
+
+.board{
+  display: grid;
+  grid-template-columns: 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px;
+  cursor: pointer;
+  position: relative;
+  width: 353px;
+  margin: 0 auto;
+}
+
+.tile{
+  font-family: "Archivo Black", sans-serif;
+  width: 7rem;
+  height: 7rem;
+  background-color: #1F3641;
+  
+  font-size: 4em;
+  font-weight: bolder;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  box-shadow: 1px 5px 5px rgb(2, 11, 60);
+}
+
+
+.strike {
+  position: absolute;
+  background-color: darkorange;
+}
+
+.strike-row-1 {
+  width: 100%;
+  height: 6px;
+  top: 15%;
+}
+.strike-row-2 {
+  width: 100%;
+  height: 6px;
+  top: 48%;
+}
+.strike-row-3 {
+  width: 100%;
+  height: 6px;
+  top: 83%;
+}
+.strike-column-1 {
+  height: 100%;
+  width: 6px;
+  left: 15.5%;
+}
+.strike-column-2 {
+  height: 100%;
+  width: 6px;
+  left: 49.5%;
+}
+.strike-column-3 {
+  height: 100%;
+  width: 6px;
+  left: 83.5%;
+}
+.strike-diagonal-1 {
+  width: 95%;
+  height: 6px;
+  top: 50%;
+  left: 4%;
+  transform: skewY(45deg);
+}
+.strike-diagonal-2 {
+  width: 95%;
+  height: 6px;
+  top: 50%;
+  left: 2%;
+  transform: skewY(-45deg);
+}
+
+.x-hover:hover::after{
+  color: #31C3BD;
+  content: 'X';
+  opacity: 0.4;
+}
+
+.o-hover:hover::after{
+  color: #F2B137;
+  content:'O';
+  opacity: 0.4;
+}
+
+.show-turn{
+  background-color: #1F3641;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+}
+
+.x-color{
+  color: #31C3BD;
+  text-shadow: 3px 5px 10px rgb(0, 76, 95);
+}
+
+.o-color{
+  color: #F2B137;
+  text-shadow: 3px 3px 4px rgb(136, 104, 0);
+}
+
+.restart-btn{
+  background-color: #1F3641;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+  color: white;
+  font-family: "Archivo Black", sans-serif;
+}
+
+.buttons{
+  width: 50%;
+  display: flex;
+  margin: 0 auto;
+  
+}
