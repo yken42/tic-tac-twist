@@ -52,6 +52,7 @@ export default function TicTacToe(){
         setTiles(Array(9).fill(null))
         TURNS_PLACES = [];
         setStrikeClass(null);
+        setPlayerTurn(PLAYER_X);
     }
 
     const handleTileClick = (index) => {
@@ -82,7 +83,6 @@ export default function TicTacToe(){
         //Switch players turn
         setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_O : PLAYER_X); 
     }
-
 
     return ( 
         <div>
