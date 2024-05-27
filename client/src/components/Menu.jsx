@@ -8,6 +8,8 @@ const Menu = () => {
     const socket = useSocket();
     const [roomCode, setRoomCode] = useState('');
 
+
+
     const handleCreateGame = () => {
         if (!socket) return;
 
@@ -15,6 +17,7 @@ const Menu = () => {
         socket.once('gameCreated', (roomCode) => {
             navigate(`/play/${roomCode}`);
         });
+
     };
 
     const handleJoinGame = () => {

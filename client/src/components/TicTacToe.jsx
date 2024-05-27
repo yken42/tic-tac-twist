@@ -18,6 +18,7 @@ export default function TicTacToe() {
     const socket = useSocket();
 
     useEffect(() => {
+        console.log(roomId);
         if (!socket) return;
 
         const handleInitialState = (initialGameData) => {
@@ -43,15 +44,13 @@ export default function TicTacToe() {
             alert('Your opponent has left the game');
         };
 
-        if(!playerSymbol){
-            socket.emit('joinGame', roomId)
-        }
 
         socket.on('initialState', handleInitialState);
         socket.on('gameState', handleGameState);
         socket.on('playerSymbol', handlePlayerSymbol);
         socket.on('playerLeft', handlePlayerLeft);
 
+        console.log(roomId);
         return () => {
             socket.off('initialState', handleInitialState);
             socket.off('gameState', handleGameState);

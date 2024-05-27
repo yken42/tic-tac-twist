@@ -41,10 +41,10 @@ export default function handleSockets(io) {
             console.log(games);
         });
 
-        socket.on('click-check', ({ roomCode, index }) => {
-            const game = games[roomCode];
+        socket.on('click-check', ({ roomId, index }) => {
+            const game = games[roomId];
+            console.log(games, roomId);
             const playerSymbol = game.players[socket.id];
-
             if (
                 playerSymbol !== game.playerTurn ||
                 game.tiles[index] !== null ||
@@ -70,17 +70,17 @@ export default function handleSockets(io) {
             }
             game.playerTurn =
                 game.playerTurn === PLAYER_X ? PLAYER_O : PLAYER_X;
-            io.to(roomCode).emit('gameState', game); // Emit updated game state to both players
+            io.to(roomId).emit('gameState', game); // Emit updated game state to both players
         });
 
-        socket.on('reset', (roomCode) => {
+        socket.on('reset', (roomId) => {
             console.log(`${socket.id.substring(0, 5)} reset the game`);
-            const game = games[roomCode];
+            const game = games[roomId];
             game.tiles = Array(9).fill(null);
             game.playerTurn = PLAYER_X;
             game.strikeClass = null;
             game.turnPlaces = [];
-            io.to(roomCode).emit('gameState', game); // Emit reset game state to both players
+            io.to(roomId).emit('gameState', game); // Emit reset game state to both players
         });
 
         socket.on("disconnect", () => {
