@@ -131,9 +131,46 @@ h1{
   font-family: "Archivo Black", sans-serif;
 }
 
-.buttons{
-  width: 50%;
-  display: flex;
+.menu{
+  width: fit-content;
   margin: 0 auto;
-  
+  text-align: center;
+}
+
+.guide-frame{
+  width: 380px;
+  border: 4px dashed rgba(12, 49, 128, 0.568);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guide-title{
+  margin: 0.5rem;
+  text-decoration: underline;
+  font-size: 25px;
+}
+
+.guide-text{
+  font-size: 19px;
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1.5rem;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.buttons{
+  display: flex;
+  width: 30%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 720px){
+  .guide-frame{
+    width: 300px;
+  }
+
+  .game-title{
+    font-size: 1.5rem;
+  }
 }
