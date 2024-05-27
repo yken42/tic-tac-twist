@@ -15,10 +15,10 @@ export default function TicTacToe() {
     const [strikeClass, setStrikeClass] = useState(null);
     const [turnPlacements, setTurnPlacements] = useState([]);
     const [playerSymbol, setPlayerSymbol] = useState(null);
+    const [roomReady, setRoomReady] = useState(false);
     const socket = useSocket();
 
     useEffect(() => {
-        console.log(roomId);
         if (!socket) return;
 
         const handleInitialState = (initialGameData) => {
@@ -44,14 +44,19 @@ export default function TicTacToe() {
             alert('Your opponent has left the game');
         };
 
+        const handleIsRoomReady = (isFull) => {
+            setRoomReady(isFull)
+        }
 
         socket.on('initialState', handleInitialState);
         socket.on('gameState', handleGameState);
         socket.on('playerSymbol', handlePlayerSymbol);
         socket.on('playerLeft', handlePlayerLeft);
+        socket.on('isRoomReady', handleIsRoomReady)
 
         console.log(roomId);
         return () => {
+            // socket.off('isRoomReady', handleIsRoomReady);
             socket.off('initialState', handleInitialState);
             socket.off('gameState', handleGameState);
             socket.off('playerSymbol', handlePlayerSymbol);
@@ -104,13 +109,18 @@ export default function TicTacToe() {
     return (
         <div>
             <h1 className="game-title">TiC <span className="x-color">X</span> TAC <span className="o-color">O</span> TOE</h1>
+            {!roomReady ? 
+            <>
+                <h1>Room code is {roomId}</h1>
+            </> : 
             <>
                 <Board playerTurn={playerTurn} tiles={tiles} onTileClick={handleTileClick} strikeClass={strikeClass} />
                 <div className="buttons">
                     <Turn turn={getTurnMessage()} />
-                    <button className="restart-btn" onClick={handleRestartButton}>Quit Game</button>
+                    <button className="restart-btn" onClick={handleRestartButton}>Play Again</button>
                 </div>
             </>
+}
         </div>
     );
 }

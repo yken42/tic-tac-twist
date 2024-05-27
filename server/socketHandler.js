@@ -32,6 +32,7 @@ export default function handleSockets(io) {
                 game.playerCount += 1;
                 socket.join(roomCode);
                 socket.emit('gameJoined', roomCode);
+                io.to(roomCode).emit('isRoomReady', game.playerCount !== 2 ? false : true)
                 io.to(roomCode).emit('initialState', game); // Emit initial state to both players
                 console.log(`User ${socket.id.substring(0, 5)} joined game with room code: ${roomCode}`);
             } else {
@@ -72,6 +73,7 @@ export default function handleSockets(io) {
                 game.playerTurn === PLAYER_X ? PLAYER_O : PLAYER_X;
             io.to(roomId).emit('gameState', game); // Emit updated game state to both players
         });
+
 
         socket.on('reset', (roomId) => {
             console.log(`${socket.id.substring(0, 5)} reset the game`);

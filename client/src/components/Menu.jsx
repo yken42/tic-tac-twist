@@ -32,6 +32,7 @@ const Menu = () => {
         });
     };
 
+
     return (
         <>
             <h1 className='game-title'>TiC <span className="x-color">X</span> TAC <span className="o-color">O</span> TOE</h1>
