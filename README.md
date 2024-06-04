@@ -1,4 +1,5 @@
-![main-menu](https://github.com/yken42/tic-tac-twist/assets/105386207/2317879c-4d4e-4d06-92c2-0228bbf68d32)# TiC - TAC - TWIST
+
+# TiC - TAC - TWIST
 Tic-Tac-Twist is game that I made as a final project for my Fullstack bootcamp.  
   
 the game shares the same rules as the original tic-tac-toe game with his own twist  
@@ -49,4 +50,11 @@ $ npm run devStart
 ```
 
 ## Screenshots
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+The main menu:  
+<img src="main-menu.png">    
+The game once a game is created:  
+<img src="games-running.png">    
+A winning POV:
+<img src="winning-pov.png">    
+The game rules:  
+<img src="game-rules.png">
