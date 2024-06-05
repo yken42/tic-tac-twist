@@ -4,14 +4,13 @@ import Board from "./Board";
 import Turn from "./Turn";
 import checkWinner from "../utils/checkWinner";
 import { useSocket } from '../hooks/SocketContext';
-
-const PLAYER_X = 'X';
-const PLAYER_O = 'O';
+import { useNavigate } from 'react-router-dom';
 
 export default function TicTacToe() {
+    const navigate = useNavigate();
     const { roomId } = useParams();
     const [tiles, setTiles] = useState(Array(9).fill(null));
-    const [playerTurn, setPlayerTurn] = useState(PLAYER_X);
+    const [playerTurn, setPlayerTurn] = useState('X');
     const [strikeClass, setStrikeClass] = useState(null);
     const [turnPlacements, setTurnPlacements] = useState([]);
     const [playerSymbol, setPlayerSymbol] = useState(null);
@@ -41,6 +40,7 @@ export default function TicTacToe() {
         };
 
         const handlePlayerLeft = () => {
+            navigate('../')
             alert('Your opponent has left the game');
         };
 
@@ -56,7 +56,6 @@ export default function TicTacToe() {
 
         console.log(roomId);
         return () => {
-            // socket.off('isRoomReady', handleIsRoomReady);
             socket.off('initialState', handleInitialState);
             socket.off('gameState', handleGameState);
             socket.off('playerSymbol', handlePlayerSymbol);
@@ -69,33 +68,10 @@ export default function TicTacToe() {
     }, [tiles]);
 
     const handleRestartButton = () => {
-        setTiles(Array(9).fill(null));
-        setTurnPlacements([]);
-        setStrikeClass(null);
-        setPlayerTurn(PLAYER_X);
         socket.emit('reset', roomId);
     };
 
     const handleTileClick = (index) => {
-        if (!socket) return;
-        if (tiles[index] !== null || strikeClass || playerSymbol !== playerTurn) {
-            return;
-        }
-        const newTiles = [...tiles];
-        if (turnPlacements.length >= 6) {
-            newTiles[turnPlacements[0]] = null;
-        }
-        setTurnPlacements(prevArr => {
-            if (prevArr.length >= 6) {
-                return [...prevArr.slice(1), index];
-            } else {
-                return [...prevArr, index];
-            }
-        });
-        newTiles[index] = playerTurn;
-        setTiles(newTiles);
-
-        setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_O : PLAYER_X);
         socket.emit('click-check', { roomId, index });
     };
 

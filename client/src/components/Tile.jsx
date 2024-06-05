@@ -1,6 +1,3 @@
-import io from 'socket.io-client';
-
-
 const Tile = ({ value, onClick, playerTurn }) => {
     let colorClass = value === 'X' ? 'x-color' : 'o-color';
     let hoverClass = null;

@@ -8,30 +8,22 @@ const Menu = () => {
     const socket = useSocket();
     const [roomCode, setRoomCode] = useState('');
 
-
-
     const handleCreateGame = () => {
-        if (!socket) return;
-
         socket.emit('createGame');
-        socket.once('gameCreated', (roomCode) => {
+        socket.on('gameCreated', (roomCode) => {
             navigate(`/play/${roomCode}`);
         });
-
     };
 
     const handleJoinGame = () => {
-        if (!socket) return;
-
         socket.emit('joinGame', roomCode);
-        socket.once('gameJoined', () => {
+        socket.on('gameJoined', () => {
             navigate(`/play/${roomCode}`);
         });
         socket.once('error', (message) => {
             alert(message);
         });
     };
-
 
     return (
         <>
@@ -50,7 +42,7 @@ const Menu = () => {
                 <ButtonStyle onClick={() => navigate('./how-to-play')}>How to play<span></span></ButtonStyle>
             </div>
         </>
-    );
-};
+    )
+}
 
 export default Menu;
