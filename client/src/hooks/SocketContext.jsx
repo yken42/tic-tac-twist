@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 const SocketContext = createContext();
 
 export const useSocket = () => useContext(SocketContext);
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = 'https://tic-tac-twist.onrender.com/';
 
 export const SocketProvider = ({ children }) => {
     
