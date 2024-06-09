@@ -8,7 +8,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: 'https://tic-tac-twist-ul0i.onrender.com/',
+        origin: process.env.CLIENT_URL,
     }
 })
 app.use(cors());
@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 
 handleSockets(io);
 
-httpServer.listen(3000, () => {
-    console.log(`server is running on: https://tic-tac-twist.onrender.com/`);
+httpServer.listen(process.env.PORT || 3000, () => {
+    console.log(`server is running on port ${httpServer.address().port}`);
 })
