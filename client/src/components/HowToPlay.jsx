@@ -19,7 +19,7 @@ const HowToPlay = () => {
                 component will be removed. <br />
                 The game continues with the same pattern
                 until three in a row have been accomplished.</p>
-                <ButtonStyle onClick={() => navigate('../')}>Back ><span></span></ButtonStyle>
+                <ButtonStyle onClick={() => navigate('../')}>Back<span></span></ButtonStyle>
             </div>
         </>
      );
