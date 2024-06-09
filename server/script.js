@@ -8,7 +8,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://localhost:5173',
+        origin: 'https://tic-tac-twist-ul0i.onrender.com/',
     }
 })
 app.use(cors());
@@ -20,5 +20,5 @@ app.get('/', (req, res) => {
 handleSockets(io);
 
 httpServer.listen(3000, () => {
-    console.log(`server is running on: http://localhost:3000`);
+    console.log(`server is running on: https://tic-tac-twist.onrender.com/`);
 })
